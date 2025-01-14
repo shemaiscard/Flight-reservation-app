@@ -23,7 +23,7 @@ Prerequisites:
 
 **Steps:**
 1. Clone the repository:
-   git clone https://github.com/shemaiscard/flight-reservation-system.git
+   git clone https://github.com/shemaiscard/flight-reservation-app.git
    cd flight-reservation-system
 
 2. Run the application:
