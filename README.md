@@ -15,6 +15,13 @@ Features:
 - Booking Management: Handle flight reservations, including booking IDs, flight details, passenger information, and payment status.
 - Payment Processing: Securely process payments for flight bookings, including transaction IDs, payment methods, and amounts.
 
+**Web Version:**
+A modern, responsive web interface is now available in this repository. It features:
+- **Clean UI**: Premium dark mode design with no unnecessary icons.
+- **Persistent Storage**: Uses Browser LocalStorage to maintain your data.
+- **Cross-Platform**: Works in any modern web browser.
+- **Easy Deployment**: Can be hosted as a static site (e.g., Netlify, GitHub Pages).
+
 **Installation:**
 Prerequisites:
 - Python 3.x

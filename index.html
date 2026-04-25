@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Reservation System | Admin Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <div class="app-container">
+        <header>
+            <h1>Flight Reservation System</h1>
+            <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
+        </header>
+
+        <nav class="tabs-nav">
+            <button class="tab-btn active" data-tab="flights">Flights</button>
+            <button class="tab-btn" data-tab="passengers">Passengers</button>
+            <button class="tab-btn" data-tab="airports">Airports</button>
+            <button class="tab-btn" data-tab="airlines">Airlines</button>
+            <button class="tab-btn" data-tab="bookings">Bookings</button>
+            <button class="tab-btn" data-tab="payments">Payments</button>
+        </nav>
+
+        <main>
+            <!-- Flights Tab -->
+            <section id="flights" class="tab-content active">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Flight Number</label>
+                        <input type="text" id="flightNumber" placeholder="e.g. FN123">
+                    </div>
+                    <div class="input-group">
+                        <label>Departure Time</label>
+                        <input type="datetime-local" id="departureTime">
+                    </div>
+                    <div class="input-group">
+                        <label>Arrival Time</label>
+                        <input type="datetime-local" id="arrivalTime">
+                    </div>
+                    <div class="input-group">
+                        <label>Origin Airport</label>
+                        <input type="text" id="originAirport" placeholder="Code">
+                    </div>
+                    <div class="input-group">
+                        <label>Destination Airport</label>
+                        <input type="text" id="destinationAirport" placeholder="Code">
+                    </div>
+                    <div class="input-group">
+                        <label>Available Seats</label>
+                        <input type="number" id="availableSeats">
+                    </div>
+                    <div class="input-group">
+                        <label>Airline ID</label>
+                        <input type="number" id="flightAirlineId">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addFlight()">Add Flight</button>
+                        <button class="btn btn-secondary" onclick="clearForm('flights')">Clear</button>
+                    </div>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" id="searchFlight" placeholder="Search by flight number..." oninput="searchFlights()">
+                </div>
+
+                <div class="table-container">
+                    <table id="flightsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Number</th>
+                                <th>Departure</th>
+                                <th>Arrival</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
+                                <th>Seats</th>
+                                <th>Airline</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Passengers Tab -->
+            <section id="passengers" class="tab-content">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>First Name</label>
+                        <input type="text" id="passengerFirstName">
+                    </div>
+                    <div class="input-group">
+                        <label>Last Name</label>
+                        <input type="text" id="passengerLastName">
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="passengerEmail">
+                    </div>
+                    <div class="input-group">
+                        <label>Passport Number</label>
+                        <input type="text" id="passengerPassport">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addPassenger()">Add Passenger</button>
+                        <button class="btn btn-secondary" onclick="clearForm('passengers')">Clear</button>
+                    </div>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" id="searchPassenger" placeholder="Search by name..." oninput="searchPassengers()">
+                </div>
+
+                <div class="table-container">
+                    <table id="passengersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Passport</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Airports Tab -->
+            <section id="airports" class="tab-content">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Airport Code</label>
+                        <input type="text" id="airportCode">
+                    </div>
+                    <div class="input-group">
+                        <label>Airport Name</label>
+                        <input type="text" id="airportName">
+                    </div>
+                    <div class="input-group">
+                        <label>Location</label>
+                        <input type="text" id="airportLocation">
+                    </div>
+                    <div class="input-group">
+                        <label>Facilities</label>
+                        <input type="text" id="airportFacilities">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addAirport()">Add Airport</button>
+                        <button class="btn btn-secondary" onclick="clearForm('airports')">Clear</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="airportsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Facilities</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Airlines Tab -->
+            <section id="airlines" class="tab-content">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Airline Name</label>
+                        <input type="text" id="airlineName">
+                    </div>
+                    <div class="input-group">
+                        <label>Contact Number</label>
+                        <input type="text" id="airlineContact">
+                    </div>
+                    <div class="input-group">
+                        <label>Operating Region</label>
+                        <input type="text" id="airlineRegion">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addAirline()">Add Airline</button>
+                        <button class="btn btn-secondary" onclick="clearForm('airlines')">Clear</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="airlinesTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Region</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Bookings Tab -->
+            <section id="bookings" class="tab-content">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Flight ID</label>
+                        <input type="number" id="bookingFlightId">
+                    </div>
+                    <div class="input-group">
+                        <label>Passenger ID</label>
+                        <input type="number" id="bookingPassengerId">
+                    </div>
+                    <div class="input-group">
+                        <label>Payment Status</label>
+                        <select id="bookingStatus">
+                            <option value="Pending">Pending</option>
+                            <option value="Paid">Paid</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addBooking()">Add Booking</button>
+                        <button class="btn btn-secondary" onclick="clearForm('bookings')">Clear</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="bookingsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Flight ID</th>
+                                <th>Passenger ID</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Payments Tab -->
+            <section id="payments" class="tab-content">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Booking ID</label>
+                        <input type="number" id="paymentBookingId">
+                    </div>
+                    <div class="input-group">
+                        <label>Payment Method</label>
+                        <select id="paymentMethod">
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="PayPal">PayPal</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Amount</label>
+                        <input type="number" step="0.01" id="paymentAmount">
+                    </div>
+                    <div class="input-group">
+                        <label>Transaction Time</label>
+                        <input type="datetime-local" id="paymentTime">
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addPayment()">Add Payment</button>
+                        <button class="btn btn-secondary" onclick="clearForm('payments')">Clear</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="paymentsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Booking ID</th>
+                                <th>Method</th>
+                                <th>Amount</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
