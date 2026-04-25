@@ -17,7 +17,8 @@
         </header>
 
         <nav class="tabs-nav">
-            <button class="tab-btn active" data-tab="flights">Flights</button>
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="flights">Flights</button>
             <button class="tab-btn" data-tab="passengers">Passengers</button>
             <button class="tab-btn" data-tab="airports">Airports</button>
             <button class="tab-btn" data-tab="airlines">Airlines</button>
@@ -26,8 +27,30 @@
         </nav>
 
         <main>
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Flights</h3>
+                        <p id="statFlights">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Bookings</h3>
+                        <p id="statBookings">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Revenue</h3>
+                        <p id="statRevenue">$0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Passengers</h3>
+                        <p id="statPassengers">0</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Flights Tab -->
-            <section id="flights" class="tab-content active">
+            <section id="flights" class="tab-content">
                 <div class="form-grid">
                     <div class="input-group">
                         <label>Flight Number</label>
@@ -64,7 +87,8 @@
                 </div>
 
                 <div class="search-bar">
-                    <input type="text" id="searchFlight" placeholder="Search by flight number..." oninput="searchFlights()">
+                    <input type="text" id="searchFlight" placeholder="Search flights..." oninput="searchFlights()">
+                    <button class="btn btn-secondary" onclick="exportData('flights')">Export CSV</button>
                 </div>
 
                 <div class="table-container">
@@ -113,7 +137,8 @@
                 </div>
 
                 <div class="search-bar">
-                    <input type="text" id="searchPassenger" placeholder="Search by name..." oninput="searchPassengers()">
+                    <input type="text" id="searchPassenger" placeholder="Search passengers..." oninput="searchPassengers()">
+                    <button class="btn btn-secondary" onclick="exportData('passengers')">Export CSV</button>
                 </div>
 
                 <div class="table-container">
@@ -157,6 +182,10 @@
                         <button class="btn btn-secondary" onclick="clearForm('airports')">Clear</button>
                     </div>
                 </div>
+                <div class="search-bar">
+                    <input type="text" id="searchAirport" placeholder="Search airports..." oninput="searchAirports()">
+                    <button class="btn btn-secondary" onclick="exportData('airports')">Export CSV</button>
+                </div>
 
                 <div class="table-container">
                     <table id="airportsTable">
@@ -194,6 +223,10 @@
                         <button class="btn btn-primary" onclick="addAirline()">Add Airline</button>
                         <button class="btn btn-secondary" onclick="clearForm('airlines')">Clear</button>
                     </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchAirline" placeholder="Search airlines..." oninput="searchAirlines()">
+                    <button class="btn btn-secondary" onclick="exportData('airlines')">Export CSV</button>
                 </div>
 
                 <div class="table-container">
@@ -235,6 +268,10 @@
                         <button class="btn btn-primary" onclick="addBooking()">Add Booking</button>
                         <button class="btn btn-secondary" onclick="clearForm('bookings')">Clear</button>
                     </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchBooking" placeholder="Search bookings..." oninput="searchBookings()">
+                    <button class="btn btn-secondary" onclick="exportData('bookings')">Export CSV</button>
                 </div>
 
                 <div class="table-container">
@@ -280,6 +317,10 @@
                         <button class="btn btn-primary" onclick="addPayment()">Add Payment</button>
                         <button class="btn btn-secondary" onclick="clearForm('payments')">Clear</button>
                     </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchPayment" placeholder="Search payments..." oninput="searchPayments()">
+                    <button class="btn btn-secondary" onclick="exportData('payments')">Export CSV</button>
                 </div>
 
                 <div class="table-container">
